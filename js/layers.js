@@ -15,6 +15,7 @@ addLayer("p", {
     exponent: 0.6, // Prestige currency exponent
     gainMult() { // Calculate the multiplier for main currency from bonuses
       let mult = new Decimal(1)
+      if (hasUpgrade('p', 14)) mult = mult.times(upgradeEffect('p', 14))
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
@@ -45,6 +46,17 @@ addLayer("p", {
         ,
         effect() {
             return player[this.layer].points.add(1).pow(0.5)
+        },
+        effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" },
+      },
+      14: {
+        title: "Reverse Starter Synergy",
+        description: "PF boosts Points,now its an true synergy!",
+        cost: new Decimal(20),
+        unlocked() { return hasUpgrade('p', 13) }
+        ,
+        effect() {
+            return player[this.layer].points.add(1).pow(0.2)
         },
         effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" },
       },
