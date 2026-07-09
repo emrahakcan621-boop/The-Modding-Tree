@@ -29,9 +29,8 @@ addLayer("p", {
         11: {
             title: "Point Fragment Generator",
             description: "Generates point fragments.",
-            cost(10) { return new Decimal(10).pow(2) },
-            effect(1) { return new Decimal(1).add(1.div(11)) }
+            cost() { return new Decimal(10).pow(2) },
+            effect() { return new Decimal(1).add(new Decimal(1).div(11)) }
         },
     },
-
 })
