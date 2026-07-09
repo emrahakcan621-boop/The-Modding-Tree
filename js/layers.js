@@ -4,10 +4,8 @@ addLayer("p", {
     position: 0, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
     startData() { return {
         unlocked: true,
-		points: new Decimal(0),
-    }},
-    color: "#fcfcfc",
-    requires: new Decimal(10), // Can be a function that takes requirement increases into account
+        points: new Decimal(0),
+    } },
     resource: "points", // Name of prestige currency
     baseResource: "point fragments", // Name of resource prestige is based on
     baseAmount() {return player.points}, // Get the current amount of baseResource
@@ -25,7 +23,6 @@ addLayer("p", {
     hotkeys: [
         {key: "p", description: "P: Reset for points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
     ],
-    layerShown(){return true},
     upgrades: {
       11: {
         title: "Starter Upgrade",
@@ -42,8 +39,7 @@ addLayer("p", {
         title: "Starter Synergy",
         description: "Classic one,Points boost PF!",
         cost: new Decimal(5),
-        unlocked() { return hasUpgrade('p', 12) }
-        ,
+        unlocked() { return hasUpgrade('p', 12) },
         effect() {
             return player[this.layer].points.add(1).pow(0.5)
         },
@@ -53,8 +49,7 @@ addLayer("p", {
         title: "Self Synergy",
         description: "Points boost themselves!",
         cost: new Decimal(20),
-        unlocked() { return hasUpgrade('p', 13) }
-        ,
+        unlocked() { return hasUpgrade('p', 13) },
         effect() {
             return player[this.layer].points.add(1).pow(0.2)
         },
@@ -65,15 +60,21 @@ addLayer("p", {
         description: "Triple PF and unlock a new buyable",
         cost: new Decimal(100),
         unlocked() { return hasUpgrade('p', 14) }
-      },
-    },
+      }
+    }
+    ,
     buyables: {
       11: {
-        title: "Point Fragment Booster",
-        description: "Doubles point fragment gain.",
-        cost: new Decimal(250).times(BuyableQuantity('p', 11).add(1).pow(3)),
-        costDisplay() { return format(this.cost) + " point fragments" },
-        unlocked() { return hasUpgrade('p', 15) }
+        cost() { return new Decimal(1) },
+        display() { return "Blah" },
+        canAfford() { return player[this.layer].points.gte(this.cost()) },
+        buy() {
+          player[this.layer].points = player[this.layer].points.sub(this.cost())
+          setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+        },
+        unlocked() { return hasUpgrade('p', 15) || true },
       },
     },
-})
+  });
+  
+    
