@@ -80,6 +80,7 @@ addLayer("p", {
           setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
         },
         effect() { return new Decimal(2).pow(getBuyableAmount(this.layer, this.id)) },
+        unlocked() { return hasUpgrade('p', 15) },
       },
     },
 })
