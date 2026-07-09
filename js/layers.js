@@ -71,7 +71,7 @@ addLayer("p", {
       11: {
         title: "Point Fragment Booster",
         description: "Doubles point fragment gain.",
-        cost: new Decimal(250).times(getBuyableAmount('p', 11).add(1).pow(3)),
+        cost: new Decimal(250).times(BuyableQuantity('p', 11).add(1).pow(3)),
         costDisplay() { return format(this.cost) + " point fragments" },
         unlocked() { return hasUpgrade('p', 15) }
       },
