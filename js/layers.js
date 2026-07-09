@@ -60,5 +60,26 @@ addLayer("p", {
         },
         effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" },
       },
+      15: {
+        title: "First Unlock",
+        description: "Triple PF and unlock a new buyable",
+        cost: new Decimal(100),
+        unlocked() { return hasUpgrade('p', 14) }
+      },
+    },
+    buyables: {
+      11: {
+        title: "Point Fragment Booster",
+        cost(x) {
+          return new Decimal(250).times(new Decimal(10).pow(x))
+        },
+        description() { return "Doubles PF per level. Cost: "+format(this.cost())+" points" },
+        canAfford() { return player.p.points.gte(this.cost()) },
+        buy() {
+          player.p.points = player.p.points.sub(this.cost())
+          setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+        },
+        effect() { return new Decimal(2).pow(getBuyableAmount(this.layer, this.id)) },
+      },
     },
 })
