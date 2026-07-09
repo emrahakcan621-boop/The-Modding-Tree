@@ -37,5 +37,16 @@ addLayer("p", {
         cost: new Decimal(2),
         unlocked() { return hasUpgrade('p', 11) }
       },
+      13: {
+        title: "Starter Synergy",
+        description: "Classic one,Points boost PF!",
+        cost: new Decimal(5),
+        unlocked() { return hasUpgrade('p', 12) }
+        ,
+        effect() {
+            return player[this.layer].points.add(1).pow(0.5)
+        },
+        effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" },
+      },
     },
 })
