@@ -25,5 +25,11 @@ addLayer("p", {
         {key: "p", description: "P: Reset for points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
     ],
     layerShown(){return true},
-    
+    upgrades: {
+      11: {
+        title: "Starter Upgrade",
+        description: "Start your journey, doubles point fragment gain.",
+        cost: new Decimal(1),
+      },
+    },
 })
