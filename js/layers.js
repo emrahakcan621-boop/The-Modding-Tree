@@ -50,8 +50,8 @@ addLayer("p", {
         effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" },
       },
       14: {
-        title: "Reverse Starter Synergy",
-        description: "PF boosts Points,now its an true synergy!",
+        title: "Self Synergy",
+        description: "Points boost themselves!",
         cost: new Decimal(20),
         unlocked() { return hasUpgrade('p', 13) }
         ,
