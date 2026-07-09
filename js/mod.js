@@ -1,12 +1,12 @@
 let modInfo = {
 	name: "The Ultimate Journey",
 	author: "GlobalNPlushie",
-	pointsName: "points",
+	pointsName: "point fragments",
 	modFiles: ["layers.js", "tree.js"],
 
 	discordName: "GlobalNPlushie!1!1",
 	discordLink: "",
-	initialStartPoints: new Decimal (10), // Used for hard resets and new players
+	initialStartPoints: new Decimal (0), // Used for hard resets and new players
 	offlineLimit: 0,  // In hours
 }
 
@@ -55,7 +55,7 @@ var displayThings = [
 
 // Determines when the game "ends"
 function isEndgame() {
-	return player.points.gte(new Decimal("e280000000"))
+	return player.points.gte(new Decimal("e15"))
 }
 
 
