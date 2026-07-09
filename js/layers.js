@@ -70,18 +70,10 @@ addLayer("p", {
     buyables: {
       11: {
         title: "Point Fragment Booster",
-        cost(x) {
-          return new Decimal(250).times(new Decimal(10).pow(x))
-        },
-        costDisplay() { return format(this.cost(getBuyableAmount(this.layer, this.id)))+" points" },
-        description() { return "Doubles PF per level. Cost: "+format(this.cost())+" points" },
-        canAfford() { return player.p.points.gte(this.cost()) },
-        buy() {
-          player.p.points = player.p.points.sub(this.cost())
-          setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
-        },
-        effect() { return new Decimal(2).pow(getBuyableAmount(this.layer, this.id)) },
-        unlocked() { return hasUpgrade('p', 15) },
+        description: "Doubles point fragment gain.",
+        cost: new Decimal(250).times(getBuyableAmount('p', 11).add(1).pow(3)),
+        costDisplay() { return format(this.cost) + " point fragments" },
+        unlocked() { return hasUpgrade('p', 15) }
       },
     },
 })
