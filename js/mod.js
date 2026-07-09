@@ -1,10 +1,10 @@
 let modInfo = {
-	name: "The ??? Tree",
-	author: "nobody",
+	name: "The Ultimate Journey",
+	author: "GlobalNPlushie",
 	pointsName: "points",
 	modFiles: ["layers.js", "tree.js"],
 
-	discordName: "",
+	discordName: "GlobalNPlushie!1!1",
 	discordLink: "",
 	initialStartPoints: new Decimal (10), // Used for hard resets and new players
 	offlineLimit: 1,  // In hours
@@ -13,7 +13,7 @@ let modInfo = {
 // Set your version in num and name
 let VERSION = {
 	num: "0.0",
-	name: "Literally nothing",
+	name: "The Beginning",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
