@@ -73,6 +73,7 @@ addLayer("p", {
         cost(x) {
           return new Decimal(250).times(new Decimal(10).pow(x))
         },
+        costDisplay() { return format(this.cost(getBuyableAmount(this.layer, this.id)))+" points" },
         description() { return "Doubles PF per level. Cost: "+format(this.cost())+" points" },
         canAfford() { return player.p.points.gte(this.cost()) },
         buy() {
