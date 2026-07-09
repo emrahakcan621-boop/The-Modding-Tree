@@ -25,4 +25,13 @@ addLayer("p", {
         {key: "p", description: "P: Reset for prestige points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
     ],
     layerShown(){return true}
+    buyables: {
+        11: {
+            title: "Point Fragment Generator",
+            description: "Generates point fragments.",
+            cost(10) { return new Decimal(10).pow(2) },
+            effect(1) { return new Decimal(1).add(1.div(11)) }
+        },
+    },
+
 })
