@@ -22,21 +22,8 @@ addLayer("p", {
     },
     row: 0, // Row the layer is in on the tree (0 is the first row)
     hotkeys: [
-        {key: "p", description: "P: Reset for prestige points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
+        {key: "p", description: "P: Reset for points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
     ],
     layerShown(){return true},
-    buyables: {
-    11: {
-        title: "Point Fragment Generator",
-        cost(x) { return new Decimal(1).mul(2) },
-        display() { return "Blah" },
-        canAfford() { return player[this.layer].points.gte(this.cost(1)) },
-        buy() {
-            player[this.layer].points = player[this.layer].points.sub(this.cost(1))
-            setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(99999999999999999999))
-        },
-        etc
-    },
-    etc
-}
+    
 })
