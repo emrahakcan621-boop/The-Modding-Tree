@@ -26,11 +26,16 @@ addLayer("p", {
     ],
     layerShown(){return true},
     buyables: {
-        11: {
-            title: "Point Fragment Generator",
-            description: "Generates point fragments.",
-            cost() { return new Decimal(10).pow(2) },
-            effect() { return new Decimal(1).add(new Decimal(1).div(11)) }
+    11: {
+        cost(x) { return new Decimal(1).mul(2) },
+        display() { return "Blah" },
+        canAfford() { return player[this.layer].points.gte(this.cost(1)) },
+        buy() {
+            player[this.layer].points = player[this.layer].points.sub(this.cost(1))
+            setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
         },
+        etc
     },
+    etc
+}
 })
