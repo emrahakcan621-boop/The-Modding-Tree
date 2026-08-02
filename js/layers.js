@@ -63,17 +63,23 @@ addLayer("p", {
       }
     }
     ,
-    buyables: {
+    _buyables: {
       11: {
-        cost() { return new Decimal(1) },
-        display() { return "Blah" },
-        canAfford() { return player[this.layer].points.gte(this.cost()) },
+        cost() { return new Decimal(1); },
+        display() { return "Blah"; },
+        canAfford() { return player[this.layer].points.gte(this.cost()); },
         buy() {
-          player[this.layer].points = player[this.layer].points.sub(this.cost())
-          setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+          player[this.layer].points = player[this.layer].points.sub(this.cost());
+          setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1));
         },
-        unlocked() { return hasUpgrade('p', 15) || true },
+        unlocked() { return hasUpgrade('p', 15) || true; },
       },
+    },
+    get buyables() {
+      return this._buyables;
+    },
+    set buyables(value) {
+      this._buyables = value;
     },
   });
   
